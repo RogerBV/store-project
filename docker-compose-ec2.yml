@@ -1,0 +1,58 @@
+services:
+  store-migration:
+    build:
+      context: ./store-backend
+      target: migration
+      dockerfile: ./Dockerfile
+    environment:
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+  store-backend:
+    build:
+      context: ./store-backend
+      target: dev
+      dockerfile: ./Dockerfile
+    ports:
+      - 8000:8000
+    volumes:
+      - ./store-backend/src:/app/src
+      - ./store-backend/alembic:/app/alembic
+      - ./store-backend/alembic.ini:/app/alembic.ini
+      - ./store-backend/pyproject.toml:/app/pyproject.toml
+      - ./store-backend/poetry.lock:/app/poetry.lock
+    environment:
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+    depends_on:
+      store-migration:
+        condition: service_completed_successfully
+    healthcheck:
+      test: >
+         sh -c "curl -f http://localhost:8000/Categories"
+      interval: 30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+  store-frontend:
+    build: 
+      context: ./store-frontend
+      dockerfile: ./Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./store-frontend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - VITE_BACKEND_HOST=${VITE_BACKEND_HOST}
+      - VITE_BACKEND_PORT=${VITE_BACKEND_PORT}
+    depends_on:
+      store-backend:
+        condition: service_healthy
+    
