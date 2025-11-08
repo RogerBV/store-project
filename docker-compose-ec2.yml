@@ -32,27 +32,4 @@ services:
     depends_on:
       store-migration:
         condition: service_completed_successfully
-    healthcheck:
-      test: >
-         sh -c "curl -f http://localhost:8000/Categories"
-      interval: 30s
-      timeout: 30s
-      retries: 5
-      start_period: 30s
-  store-frontend:
-    build: 
-      context: ./store-frontend
-      dockerfile: ./Dockerfile
-    ports:
-      - "5173:5173"
-    volumes:
-      - ./store-frontend:/app
-      - /app/node_modules
-    environment:
-      - NODE_ENV=development
-      - VITE_BACKEND_HOST=${VITE_BACKEND_HOST}
-      - VITE_BACKEND_PORT=${VITE_BACKEND_PORT}
-    depends_on:
-      store-backend:
-        condition: service_healthy
     
