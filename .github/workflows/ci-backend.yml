@@ -25,4 +25,4 @@ jobs:
             - name: Run tests
               run: |
                 cd store-backend
-                poetry run tests/test_proyect_router.py -v
+                poetry run pytest tests/test_proyect_router.py -v
