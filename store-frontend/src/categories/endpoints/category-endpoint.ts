@@ -5,7 +5,7 @@ const URL = 'Categories'
 
 export const saveCategoryEndpoint = async (objCategory: ICategory) => {
     const requestOptions = {
-        method: 'PUT',
+        method: 'POST',
         headers: { 
             'Content-Type': 'application/json',
         },
@@ -22,7 +22,7 @@ export const saveCategoryEndpoint = async (objCategory: ICategory) => {
 
 export const updateCategoryEndpoint = async (objCategory: ICategory) => {
     const requestOptions = {
-        method: 'POST',
+        method: 'PUT',
         headers: { 
             'Content-Type': 'application/json',
         },

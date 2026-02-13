@@ -5,7 +5,7 @@ const URL = 'Products'
 
 export const saveProductEndpoint = async (objProduct: IProduct) => {
     const requestOptions = {
-        method: 'PUT',
+        method: 'POST',
         headers: { 
             'Content-Type': 'application/json',
         },
@@ -25,7 +25,7 @@ export const saveProductEndpoint = async (objProduct: IProduct) => {
 
 export const updateProductEndpoint = async (objProduct: IProduct) => {
     const requestOptions = {
-        method: 'POST',
+        method: 'PUT',
         headers: { 
             'Content-Type': 'application/json',
         },

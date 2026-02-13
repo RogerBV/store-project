@@ -18,8 +18,8 @@ COPY ./alembic.ini /app/alembic.ini
 COPY ./alembic /app/alembic
 COPY ./src /app/src
 
-#FROM local_development_base AS makemigration
-#CMD ["sh", "-c", "poetry run alembic revision --autogenerate -m 'First Migration' && poetry run alembic upgrade head"]
+FROM local_development_base AS makemigration
+CMD ["sh", "-c", "poetry run alembic revision --autogenerate -m 'First Migration' && poetry run alembic upgrade head"]
 
 FROM local_development_base AS migration
 CMD ["sh", "-c", "poetry run alembic upgrade head"]

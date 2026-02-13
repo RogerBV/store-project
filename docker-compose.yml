@@ -3,8 +3,8 @@ services:
     image: postgres:15
     ports:
       - "${DB_PORT}:5432"
-    volumes:
-      - ./store-database:/var/lib/postgresql/data
+    #volumes:
+      #- ./store-database:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
@@ -18,7 +18,7 @@ services:
   store-migration:
     build:
       context: ./store-backend
-      target: migration
+      target: makemigration
       dockerfile: ./Dockerfile
     depends_on:
       store-database:
@@ -38,6 +38,7 @@ services:
       - 8000:8000
     volumes:
       - ./store-backend/src:/app/src
+      - ./store-backend/tests:/app/tests
       - ./store-backend/alembic:/app/alembic
       - ./store-backend/alembic.ini:/app/alembic.ini
       - ./store-backend/pyproject.toml:/app/pyproject.toml
@@ -59,19 +60,11 @@ services:
       retries: 5
       start_period: 30s
   store-frontend:
-    build: 
+    build:
       context: ./store-frontend
       dockerfile: ./Dockerfile
     ports:
-      - "5173:5173"
+      - 5173:5173
     volumes:
-      - ./store-frontend:/app
-      - /app/node_modules
-    environment:
-      - NODE_ENV=development
-      - VITE_BACKEND_HOST=${VITE_BACKEND_HOST}
-      - VITE_BACKEND_PORT=${VITE_BACKEND_PORT}
-    depends_on:
-      store-backend:
-        condition: service_healthy
+      - ./store-frontend/src:/app/src
     

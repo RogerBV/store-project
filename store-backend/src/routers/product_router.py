@@ -21,13 +21,13 @@ async def get_product(db: Session = Depends(get_db), product_id: int = 1) -> lis
 	product_dao = ProductDAO(db)
 	return await product_dao.get_product(product_id)
 
-@product_router.put('')
+@product_router.post('')
 async def create_product(new_product_model: NewProductModel, db: Session = Depends(get_db)) -> RegisteredProductModel:
 	product_dao = ProductDAO(db)
 	return await product_dao.create_product(new_product_model)
 
 
-@product_router.post('')
+@product_router.put('')
 async def update_product(registered_product_model: RegisteredProductModel, db: Session = Depends(get_db)) -> RegisteredProductModel:
     product_dao = ProductDAO(db)
     return await product_dao.update_product(registered_product_model)
