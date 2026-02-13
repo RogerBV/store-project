@@ -10,6 +10,14 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
+
+            - name: Install Poetry
+              uses: snok/install-poetry@v1
+              with:
+                version: 1.7.1
+                virtualenvs-create: true
+                virtualenvs-in-project: true
+
             - name: Install Dependencies
               run: |
                 cd store-backend
