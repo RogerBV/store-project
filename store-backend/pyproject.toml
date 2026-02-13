@@ -21,6 +21,8 @@ dependencies = [
 [tool.poetry]
 name = "store-backend"
 version = "0.1.0"
+description = "Backend of project"
+authors = ["roger.barriga <rogerbv9022@gmail.com>"]
 packages = [{include = "store_backend", from = "src"}]
 
 
