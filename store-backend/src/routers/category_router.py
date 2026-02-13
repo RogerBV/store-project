@@ -15,12 +15,12 @@ async def get_categories(db: Session = Depends(get_db)) -> list[RegisteredCatego
 	category_dao = CategoryDAO(db)
 	return await category_dao.get_categories()
 
-@category_router.put('')
+@category_router.post('')
 async def create_category(new_category_model: NewCategoryModel, db: Session = Depends(get_db)) -> RegisteredCategoryModel:
   category_dao = CategoryDAO(db)
   return await category_dao.create_category(new_category_model)
 
-@category_router.post('')
+@category_router.put('')
 async def update_category(registered_category_model: RegisteredCategoryModel, db: Session = Depends(get_db)) -> RegisteredCategoryModel:
 	category_dao = CategoryDAO(db)
 	return await category_dao.update_category(registered_category_model)
