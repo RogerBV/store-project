@@ -1,8 +1,8 @@
-const SERVER_NAME = import.meta.env.VITE_BACKEND_HOST
-const PORT = import.meta.env.VITE_BACKEND_PORT
+const baseUrl =
+  import.meta.env.VITE_BACKEND_URL ||
+  `http://${import.meta.env.VITE_BACKEND_HOST}:${import.meta.env.VITE_BACKEND_PORT}`
 
 export const makeRequest = async (url: string, objRequestOptions: object) => {
-    const baseUrl = `http://${SERVER_NAME}:${PORT}`
     const response = await fetch(`${baseUrl}/${url}`, objRequestOptions)
     if (response.status == 401) {
         document.cookie.split(";").forEach((cookie) => {

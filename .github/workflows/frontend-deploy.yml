@@ -29,6 +29,8 @@ jobs:
 
       - name: Build Project
         run: npm run build
+        env:
+          VITE_BACKEND_URL: ${{ vars.VITE_BACKEND_URL }}
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
