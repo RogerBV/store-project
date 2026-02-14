@@ -6,7 +6,6 @@ interface CategoryListItemProps {
     key: number;
     category: ICategory
     index: number;
-    enableEditParam: (val: number) => void
     onListCategories: () => void
 }
 

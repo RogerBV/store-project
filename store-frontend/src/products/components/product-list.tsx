@@ -3,11 +3,10 @@ import ProductListItem from "./product-list-item";
 
 interface ProductListProps {
     productsParam: IProduct[]
-    enableEditParam: (val: number) => void
     onListProducts: () => void
 }
 
-export default function ProductList({ productsParam, enableEditParam, onListProducts }: ProductListProps) {
+export default function ProductList({ productsParam, onListProducts }: ProductListProps) {
   return (
     <div className="w-full">
       <div className="mb-8">
@@ -69,7 +68,7 @@ export default function ProductList({ productsParam, enableEditParam, onListProd
             </thead>
             <tbody className="bg-white divide-y divide-gray-100">
               {productsParam.map((product, index) => (
-                <ProductListItem key={product.id} product={product} index={index} enableEditParam={enableEditParam} onListProducts={() => onListProducts()} />
+                <ProductListItem key={product.id} product={product} index={index} onListProducts={() => onListProducts()} />
               ))}
             </tbody>
           </table>
