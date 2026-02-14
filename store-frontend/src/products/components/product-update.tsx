@@ -67,7 +67,7 @@ export default function ProductUpdate({ productIdParam, onListProducts }: Produc
                             <div className="space-y-6">
                               <div>
                                 <label htmlFor="productName" className="block text-sm font-semibold text-gray-700 mb-2 text-left">
-                                  Product Name
+                                  Product
                                 </label>
                                 <div className="relative">
                                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
