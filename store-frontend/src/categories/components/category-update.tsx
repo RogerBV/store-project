@@ -10,7 +10,7 @@ interface CategoryUpdateProps {
 
 export default function CategoryUpdate({ categoryIdParam, onListCategories }: CategoryUpdateProps) {
     const [loading, setLoading] = useState(false)
-    const [objCategory, setObjCategory] = useState<ICategory>({ id: 0, name: '' })
+    const [objCategory, setObjCategory] = useState<ICategory>({ id: 0, name: '', status: 1 })
     const [isOpen, setIsOpen] = useState(false)
 
     const updateCategoryMethod = async () => {
