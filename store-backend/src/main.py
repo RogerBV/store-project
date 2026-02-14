@@ -5,21 +5,17 @@ from src.routers.product_router import product_router
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from fastapi.requests import Request
-from fastapi.responses import Response
-
+from src.entities.common.config import CORS_ORIGINS
 
 app = FastAPI()
-origins = [
-	"*"
-]
-
 
 app.add_middleware(
 	CORSMiddleware,
-	allow_origins=origins,
+	allow_origins=CORS_ORIGINS,
 	allow_credentials=True,
 	allow_methods=["*"],
-	allow_headers=["*"]
+	allow_headers=["*"],
+	expose_headers=["*"],
 )
 
 
@@ -27,7 +23,7 @@ app.add_middleware(
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
 	return JSONResponse(
 		status_code=422,
-		content={"detail": exc.erros()}	
+		content={"detail": exc.errors()}	
 	)
 
 app.include_router(category_router)
