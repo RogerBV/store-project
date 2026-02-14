@@ -7,7 +7,6 @@ interface ProductListItemProps {
     key: number;
     product: IProduct
     index: number;
-    enableEditParam: (val: number) => void
     onListProducts: () => void
 }
 

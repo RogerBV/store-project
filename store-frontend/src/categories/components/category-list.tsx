@@ -3,11 +3,10 @@ import CategoryListItem from "./category-list-item";
 
 interface CategoryListProps {
     categoriesParam: ICategory[]
-    enableEditParam: (val: number) => void
     onListCategories: () => void
 }
 
-export default function CategoryList({ categoriesParam, enableEditParam, onListCategories }: CategoryListProps) {
+export default function CategoryList({ categoriesParam, onListCategories }: CategoryListProps) {
   return (
     <div className="w-full">
       <div className="mb-8">
@@ -53,7 +52,7 @@ export default function CategoryList({ categoriesParam, enableEditParam, onListC
             </thead>
             <tbody className="bg-white divide-y divide-gray-100">
               {categoriesParam.map((category, index) => (
-                <CategoryListItem key={category.id} category={category} index={index} enableEditParam={enableEditParam} onListCategories={() => onListCategories()} />
+                <CategoryListItem key={category.id} category={category} index={index} onListCategories={() => onListCategories()} />
               ))}
             </tbody>
           </table>
