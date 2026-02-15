@@ -5,13 +5,14 @@ from src.routers.product_router import product_router
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from fastapi.requests import Request
-from src.entities.common.config import CORS_ORIGINS
+from src.entities.common.config import CORS_ORIGINS, CORS_ORIGIN_REGEX
 
 app = FastAPI()
 
 app.add_middleware(
 	CORSMiddleware,
 	allow_origins=CORS_ORIGINS,
+	allow_origin_regex=CORS_ORIGIN_REGEX,
 	allow_credentials=True,
 	allow_methods=["*"],
 	allow_headers=["*"],
