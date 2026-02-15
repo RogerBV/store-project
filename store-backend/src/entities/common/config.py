@@ -22,6 +22,6 @@ CORS_ORIGINS = [o.strip() for o in _cors.split(',') if o.strip()] if _cors else 
 # Por defecto: CloudFront (*.cloudfront.net) y localhost/127.0.0.1 en cualquier puerto.
 _cors_regex = os.getenv('CORS_ORIGIN_REGEX', '').strip()
 CORS_ORIGIN_REGEX = _cors_regex if _cors_regex else (
-	r'^https://[a-z0-9-]+\.cloudfront\.net$|'  # CloudFront
+	r'^https?://[a-z0-9-]+\.cloudfront\.net$|'  # CloudFront (HTTP y HTTPS)
 	r'^https?://(localhost|127\.0\.0\.1)(:\d+)?$'  # localhost / 127.0.0.1
 )
