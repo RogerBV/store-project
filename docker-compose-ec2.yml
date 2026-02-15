@@ -29,6 +29,7 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_HOST=${DB_HOST}
       - DB_PORT=${DB_PORT}
+      - CORS_ORIGINS=${CORS_ORIGINS}
     depends_on:
       store-migration:
         condition: service_completed_successfully
