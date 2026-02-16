@@ -1,9 +1,11 @@
 name: Backend Deploy
 
 on:
-    pull_request:
+    push:
         branches:
             - main
+        paths:
+          - 'store-backend/**'
 
 jobs:
   deploy:
